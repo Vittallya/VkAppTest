@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:App1.ViewModels"
+             
+             x:Class="App1.MainPage">
+
+    <ContentPage.BindingContext>
+        <vm:MainViewModel/>
+    </ContentPage.BindingContext>
+    
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+
+
+        <ListView  x:Name="listView"                   
+                  ItemsSource="{Binding Items}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ImageCell
+                        Text="{Binding name}"
+                        ImageSource="{Binding Icon}"
+                        Height="75"
+                        Command="{Binding BindingContext.OnItemClickCommand, Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
+                        CommandParameter="{Binding BindingContext, Source={RelativeSource Mode=Self}}"
+                        Detail="{Binding description}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+
+
+    </StackLayout>
+
+</ContentPage>
