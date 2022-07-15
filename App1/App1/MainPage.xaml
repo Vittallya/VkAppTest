@@ -15,22 +15,25 @@
         </Frame>
 
 
-        <ListView RowHeight="100"  x:Name="listView"                   
+        <ListView HasUnevenRows="True"
+                    x:Name="listView"  
+                  
+                  SelectedItem="{Binding Service}"
                   ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
 
-                        <Grid>
+                        <Grid Padding="7 5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="75"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
 
-                            <Image Source="{Binding Icon}"
-                                   Margin="10"
-                                   VerticalOptions="Fill"
+                            <Image Source="{Binding Icon}"                                
+                                   HeightRequest="55"
+                                   VerticalOptions="StartAndExpand"
                                    Aspect="AspectFit"/>
 
                             <StackLayout Grid.Column="1">

@@ -20,30 +20,36 @@ namespace App1.ViewModels
 
         public ICommand OnLoadedCommand { get; }
         public ICommand OnItemClickCommand { get; }
-        readonly IList<ApplicationInfo> apps;
+
+        private Service service;
+
+        public Service Service
+        {
+            get { return service; }
+            set { service = value; OnItemClicked(value); }
+        }
+
 
         public MainViewModel()
         {
-            OnItemClickCommand = new Command<Service>(OnItemClicked);
-
             Load();
         }
 
-        private void OnItemClicked(Service obj)
+        public void OnItemClicked(Service e)
         {
-
-
-            try
+            if (e != null)
             {
-                var aUri = Android.Net.Uri.Parse(obj.link);
-                var intent = new Intent(Intent.ActionView, aUri);
-                intent.AddFlags(ActivityFlags.NewTask);
-                Android.App.Application.Context.StartActivity(intent);
+                try
+                {
+                    var aUri = Android.Net.Uri.Parse(e.link);
+                    var intent = new Intent(Intent.ActionView, aUri);
+                    intent.AddFlags(ActivityFlags.NewTask);
+                    Android.App.Application.Context.StartActivity(intent);
+                }
+                catch (ActivityNotFoundException)
+                {
+                }
             }
-            catch (ActivityNotFoundException)
-            {
-            }
-
             //Intent intent = Android.App.Application.Context.PackageManager.GetLaunchIntentForPackage(obj.link);
 
 
