@@ -24,7 +24,7 @@
                 <DataTemplate>
                     <ViewCell>
 
-                        <Grid Padding="7 5">
+                        <Grid Padding="3, 5, 25, 3">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="75"/>
                                 <ColumnDefinition/>
