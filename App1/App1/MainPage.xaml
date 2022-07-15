@@ -10,22 +10,44 @@
     </ContentPage.BindingContext>
     
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        <Frame BackgroundColor="#2191C8" Padding="16" CornerRadius="0">
+            <Label Text="Сервисы VK" HorizontalTextAlignment="Center" TextColor="White" FontSize="Large"/>
         </Frame>
 
 
-        <ListView  x:Name="listView"                   
+        <ListView RowHeight="100"  x:Name="listView"                   
                   ItemsSource="{Binding Items}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ImageCell
-                        Text="{Binding name}"
-                        ImageSource="{Binding Icon}"
-                        Height="75"
-                        Command="{Binding BindingContext.OnItemClickCommand, Source={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListView}}}"
-                        CommandParameter="{Binding BindingContext, Source={RelativeSource Mode=Self}}"
-                        Detail="{Binding description}"/>
+                    <ViewCell>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="75"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <Image Source="{Binding Icon}"
+                                   Margin="10"
+                                   VerticalOptions="Fill"
+                                   Aspect="AspectFit"/>
+
+                            <StackLayout Grid.Column="1">
+
+                                <Label Text="{Binding name}"
+                                   Grid.Column="1"
+                                       FontSize="Body"
+                                       FontAttributes="Bold"
+                                   HorizontalOptions="FillAndExpand"/>
+
+                                <Label Text="{Binding description}"
+                                   Grid.Column="1"
+                                   HorizontalOptions="FillAndExpand"/>
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                    
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

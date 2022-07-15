@@ -15,4 +15,13 @@
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
     <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>D:\Soft\Microsoft Visual Studio\2019\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v10.0\Mono.Android.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Essentials">
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Microsoft\Xamarin\NuGet\xamarin.essentials\1.6.1\lib\monoandroid10.0\Xamarin.Essentials.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

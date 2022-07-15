@@ -1,14 +1,12 @@
-﻿using App1.Models;
+﻿using Android.Content;
+using Android.Content.PM;
+using App1.Models;
 using Newtonsoft.Json;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -22,17 +20,44 @@ namespace App1.ViewModels
 
         public ICommand OnLoadedCommand { get; }
         public ICommand OnItemClickCommand { get; }
-
+        readonly IList<ApplicationInfo> apps;
 
         public MainViewModel()
         {
             OnItemClickCommand = new Command<Service>(OnItemClicked);
+
             Load();
         }
 
-        private async void OnItemClicked(Service obj)
+        private void OnItemClicked(Service obj)
         {
-            await Launcher.OpenAsync(obj.link);
+
+
+            try
+            {
+                var aUri = Android.Net.Uri.Parse(obj.link);
+                var intent = new Intent(Intent.ActionView, aUri);
+                intent.AddFlags(ActivityFlags.NewTask);
+                Android.App.Application.Context.StartActivity(intent);
+            }
+            catch (ActivityNotFoundException)
+            {
+            }
+
+            //Intent intent = Android.App.Application.Context.PackageManager.GetLaunchIntentForPackage(obj.link);
+
+
+            //if (intent != null)
+            //{
+            //    intent.AddFlags(ActivityFlags.NewTask);
+            //    Android.App.Application.Context.StartActivity(intent);
+
+            //}
+            //else
+            //{
+            //    await Launcher.OpenAsync(obj.link);
+            //}
+                
         }
 
         private async void Load()
